@@ -1,15 +1,31 @@
 console.log("Hello Hoiby's World!");
 
-let playerScore=0;
-let computerScore=0;
+let playerScore= 0;
+let computerScore= 0;
+
 //Ask user to start a game
 //For every round until 5 rounds
     function playGame() {
          
         for (i=0;i<5;i++) {
             playRound(getUserInput(),getComputerInput());
+            console.log("Your score: " + playerScore + ", the computer score: " + computerScore);
         }
+
+        determineWinner();
     }
+
+    function determineWinner() {
+        if (playerScore == computerScore) {
+            console.log("Game over, it's a tie!");
+        } 
+        else if (playerScore > computerScore) {
+            console.log("Game over, you win!");
+        }
+        else { 
+            console.log("Game over, you lose!");
+        };
+    };
 
     playGame();
 
@@ -47,11 +63,13 @@ let computerScore=0;
         else if ((playerSelection == "scissors" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "stone") || (playerSelection == "stone" && computerSelection == "scissors")) {
             alert("You win! You chose " + playerSelection + " and that beats the computer's " + computerSelection + "!");
             console.log("You win! You chose " + playerSelection + " and that beats the computer's " + computerSelection + "!");
+            ++playerScore;
             return;
         }
         else {
             alert("You lose.. The computer chose " + computerSelection + " and that beats your " + playerSelection + ". :(");
             console.log("You lose.. The computer chose " + computerSelection + " and that beats your " + playerSelection + ". :(");
+            ++computerScore;
             return;
         }
     };
