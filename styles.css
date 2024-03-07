@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#introSection {
+    text-align: center;
+}
+
+#resultSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#scoreSection {
+    display: flex;
+    gap:40px;
+}
+
+#playerDiv, #computerDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

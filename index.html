@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Scissors Paper Stone!</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Scissors Paper Stone!</title>
+</head>
     
-    <body>
-        Hello World! Welcome to my Scissors Paper Stone game!
-    
-        <script src="script.js"></script>
-    </body>
+<body>
+    <div id="introSection">
+        <h1>Catbree's Scissors Paper Stone</h1>
+        <p>Come try your luck. First to 5 wins!</p>
+    </div>
+    <div id="optionSection">
+        <button class="optionButton">Scissors</button>
+        <button class="optionButton">Paper</button>
+        <button class="optionButton">Stone</button>
+    </div>
+    <div id="resultSection">
+        <h2 id="resultDisplay">...</h2>
+    </div>
+    <div id="scoreSection">
+        <div id="playerDiv">
+            <div id="playerSelectedOption">??</div>
+            <h2><span>Player: </span><span id="playerScoreDisplay"></span></h2>    
+        </div>
+        <div id="computerDiv">
+            <div id="computerSelectedOption">??</div>
+            <h2><span>Computer: </span><span id="computerScoreDisplay"></span></h2>    
+        </div>
+    </div>
+    <div id="restartSection"></div>
+
+    <script src="script.js"></script>
+</body>
 </html>
 

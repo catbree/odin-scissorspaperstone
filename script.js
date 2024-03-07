@@ -5,6 +5,7 @@ let computerScore= 0;
 
 //Ask user to start a game
 //For every round until 5 rounds
+/*
     function playGame() {
          
         for (i=0;i<5;i++) {
@@ -14,26 +15,59 @@ let computerScore= 0;
 
         determineWinner();
     }
+*/
 
     function determineWinner() {
-        if (playerScore == computerScore) {
-            console.log("Game over, it's a tie!");
+
+        if (playerScore == 5) {
+            console.log("You win!");
+            resultDisplay.textContent = "You won 5 rounds, congratulations!";
+            endGame();
         } 
-        else if (playerScore > computerScore) {
-            console.log("Game over, you win!");
+        else if (computerScore == 5) {
+            console.log("You lose!");
+            resultDisplay.textContent = "The computer won 5 rounds first, better luck next time.";
+            endGame();
         }
         else { 
-            console.log("Game over, you lose!");
         };
     };
 
-    playGame();
+    const restartSection = document.querySelector('#restartSection');
+    function endGame() {
+        optionButtons.forEach((optionButton) => {
+            optionButton.disabled = true;
+        });
 
+        const restartButton = document.createElement("Button");
+        restartButton.textContent = "Restart";
+        restartSection.appendChild(restartButton);
+
+        restartButton.addEventListener('click', () => {
+            location.reload();
+        })
+    }
+
+//    playGame();
+
+    //get userInput of rock paper scissors
+    const optionButtons = document.querySelectorAll('.optionButton');
+    optionButtons.forEach((optionButton) => {
+        optionButton.addEventListener('click', () => {
+            playerSelection=optionButton.textContent;
+            console.log("I've been clicked! I am " + playerSelection);
+
+            playRound(playerSelection,getComputerInput());
+        });
+    });
+
+/*
     //ask userInput of rock paper scissors
     function getUserInput() {
         input = prompt("Scissors, Paper, or Stone?");
         return input;
     };
+*/
 
     //getcomputerChoice
     function getComputerInput() {
@@ -51,35 +85,34 @@ let computerScore= 0;
         return input;
     }
     //compare user and computer choice
+    const playerSelectedOption = document.querySelector('#playerSelectedOption');
+    const computerSelectedOption = document.querySelector('#computerSelectedOption');
+    const resultDisplay = document.querySelector('#resultDisplay');
+    const playerScoreDisplay = document.querySelector('#playerScoreDisplay');
+    const computerScoreDisplay = document.querySelector('#computerScoreDisplay');
+
+    playerScoreDisplay.textContent = 0;
+    computerScoreDisplay.textContent = 0;
     function playRound(playerSelection,computerSelection) {
         
         playerSelection = playerSelection.toLowerCase();
 
+        playerSelectedOption.textContent = playerSelection;
+        computerSelectedOption.textContent = computerSelection;
+
         if (playerSelection === computerSelection) {
-            alert("It's a tie! Both of you chose " + playerSelection + ".");
-            console.log("It's a tie! Both of you chose " + playerSelection + ".");
-            return;
+            resultDisplay.textContent = "It's a tie";
         }
         else if ((playerSelection == "scissors" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "stone") || (playerSelection == "stone" && computerSelection == "scissors")) {
-            alert("You win! You chose " + playerSelection + " and that beats the computer's " + computerSelection + "!");
-            console.log("You win! You chose " + playerSelection + " and that beats the computer's " + computerSelection + "!");
+            resultDisplay.textContent = "+1 to you";
             ++playerScore;
-            return;
+            playerScoreDisplay.textContent = playerScore;
         }
         else {
-            alert("You lose.. The computer chose " + computerSelection + " and that beats your " + playerSelection + ". :(");
-            console.log("You lose.. The computer chose " + computerSelection + " and that beats your " + playerSelection + ". :(");
+            resultDisplay.textContent = "+1 to the computer";
             ++computerScore;
-            return;
+            computerScoreDisplay.textContent = computerScore;
         }
+        determineWinner()
+        return;
     };
-
-    
-        // if same it's a draw
-        // PLAYER SCISSORS COMPUTER PAPER - USER WIN
-        // PLAYER STONE COMPUTER SCISSORS - USER WIN
-        // PLAYER PAPER COMPUTER STONE - USER WIN
-        // ELSE PLAYER LOSE
-    //display round result
-    //record result round
-//Display total score and result
